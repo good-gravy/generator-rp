@@ -1,0 +1,10 @@
+﻿<pnp:Files xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+
+  <pnp:File Src=".\search.master" Folder="{masterpagecatalog}/<%= applicationname %>/MasterPages" Overwrite="true" Level="Published">
+    <pnp:Properties>
+      <pnp:Property Key="Title" Value="<%= applicationname %> Search Master" />
+      <pnp:Property Key="ContentTypeId" Value="{contenttypeid:ASP NET Master Page}" />
+      <pnp:Property Key="PublishingAssociatedContentType" Value=";#ASP NET Master Page;#0x0101000F1C8B9E0EB4BE489F09807B2C53288F0054AD6EF48B9F7B45A142F8173F171BD1;#"/>
+    </pnp:Properties>
+  </pnp:File>
+</pnp:Files>

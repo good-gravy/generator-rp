@@ -1,0 +1,29 @@
+﻿<pnp:ContentTypes xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <!-- ********      -->
+  <!-- LIST TYPES    -->
+  <!-- ********      -->
+  <pnp:ContentType ID="" Name="" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+    <pnp:FieldRefs>      
+      <pnp:FieldRef ID="" Name="" />
+    </pnp:FieldRefs>
+  </pnp:ContentType>
+  
+  <!-- ********      -->
+  <!-- DOC TYPES    -->
+  <!-- ********      -->
+  <pnp:ContentType ID="" Name="Base Document" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+    <pnp:FieldRefs>      
+      <pnp:FieldRef ID="" Name="" />
+    </pnp:FieldRefs>
+  </pnp:ContentType>
+  
+  <!-- ********      -->
+  <!-- PAGE TYPES    -->
+  <!-- ********      -->
+  <pnp:ContentType ID="" Name="Base Page" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+    <pnp:FieldRefs>
+      <pnp:FieldRef ID="" Name="" />
+    </pnp:FieldRefs>
+    <pnp:DocumentTemplate TargetName="/_layouts/15/CreatePage.aspx" />
+  </pnp:ContentType>
+</pnp:ContentTypes>

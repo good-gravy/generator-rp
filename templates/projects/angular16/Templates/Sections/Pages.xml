@@ -1,0 +1,11 @@
+﻿<pnp:Files xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:File Src=".\Pages\index.aspx" Folder="{site}/Pages" Overwrite="true" Level="Published">
+    <pnp:Properties>
+      <pnp:Property Key="ContentTypeId" Value="{contenttypeid:Base Page}" />
+      <pnp:Property Key="Title" Value="<%= applicationname %> Intranet​" />
+      <pnp:Property Key="Comments" Value="PnP Provisioning." />
+      <pnp:Property Key="PublishingPageContent" Value="" />
+      <pnp:Property Key="PublishingPageLayout" Value="{masterpagecatalog}/<%= applicationname %>/PageLayouts/com_ContentPage.aspx, Base Page Layout" />
+    </pnp:Properties>    
+  </pnp:File>  
+</pnp:Files>

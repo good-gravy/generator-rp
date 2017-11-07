@@ -1,0 +1,13 @@
+﻿<pnp:SiteFields xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+	<!--- MMD FIELDS -->   
+
+  <!-- TEXT FIELDS -->
+  <!-- NUMBER FIELDS -->
+  <!-- DATE FIELDS -->
+  <!-- CHOICE FIELDS -->
+  <!-- USER/GROUP FIELDS -->
+  
+  <!-- URL FIELDS -->
+  <!-- CALC FIELDS -->
+  <!-- BOOLEAN FIELDS -->
+</pnp:SiteFields>

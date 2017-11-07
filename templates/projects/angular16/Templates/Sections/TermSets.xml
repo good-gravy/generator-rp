@@ -1,0 +1,11 @@
+﻿<pnp:TermGroups xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:TermGroup Name="{sitecollectiontermgroupname}" Description="" SiteCollectionTermGroup="true">
+    <pnp:TermSets>
+      <pnp:TermSet Name="" Description="">
+        <pnp:Terms>
+          <pnp:Term Name="" />
+        </pnp:Terms>
+      </pnp:TermSet>      
+    </pnp:TermSets>
+  </pnp:TermGroup>
+</pnp:TermGroups>
