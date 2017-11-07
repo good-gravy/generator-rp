@@ -1,0 +1,147 @@
+﻿<%@Master language="C#"%>
+<%@Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="PublishingWebControls" Namespace="Microsoft.SharePoint.Publishing.WebControls " Assembly="Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="wssucmui" TagName="MUISelector" Src="~/_controltemplates/15/MUISelector.ascx"%>
+<%@Register TagPrefix="wssuc" TagName="Welcome" Src="~/_controltemplates/15/Welcome.ascx"%>
+<%@Register TagPrefix="SearchWC" Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="PublishingNavigation" Namespace="Microsoft.SharePoint.Publishing.Navigation" Assembly="Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="PublishingRibbon" TagName="PublishingRibbon" Src="~/_controltemplates/15/Ribbon.ascx"%>
+<!DOCTYPE HTML>
+<SharePoint:SPHtmlTag runat="server" id="SPHtmlTag" dir="&lt;%$Resources:wss,multipages_direction_dir_value%&gt;">
+<head runat="server">
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta charset="utf-8" />
+<meta name="GENERATOR" content="Microsoft SharePoint + TopSharePoint.com Theme" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Expires" content="0" />
+<meta name=viewport content="width=device-width, initial-scale=1">
+<SharePoint:RobotsMetaTag runat="server" />
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" type="text/css" rel="stylesheet"  />
+
+<script type="text/javascript" src="<asp:Literal runat="server" Text="<%$SPUrl: ~sitecollection/_catalogs/masterpage//js/ensure-scripts.js%>" />"></script>
+
+<link rel="shortcut icon" href="<% $SPUrl:~SiteCollection/_catalogs/masterpage//images/.ico %>" />
+<SharePoint:PageTitle runat="server"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"><SharePoint:ProjectProperty Property="Title" runat="server" /></asp:ContentPlaceHolder></SharePoint:PageTitle>
+<SharePoint:StartScript runat="server" />
+<SharePoint:CssLink runat="server" Version="15" />
+<SharePoint:CacheManifestLink runat="server" />
+<SharePoint:PageRenderMode runat="server" RenderModeType="Standard" />
+<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false" />
+<SharePoint:SoapDiscoveryLink runat="server" />
+<asp:ContentPlaceHolder ID="PlaceHolderAdditionalPageHead" runat="server" />
+<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+
+<!--Compassion Specific Includes -->
+<SharePoint:CssRegistration Name="Themable/corev15.css" runat="server" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" type="text/css" rel="stylesheet"  />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" type="text/css" rel="stylesheet"  />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"  />
+<link href="<asp:Literal runat="server" Text="<%$SPUrl: ~sitecollection/_catalogs/masterpage//css/main.min.css%>" />" type="text/css" rel="stylesheet"  />
+
+    <!-- Hide site contents link -->
+    <style>        
+        #ctl00_PlaceHolderLeftNavBar_PlaceHolderQuickLaunchBottom_idNavLinkViewAll { display: none; }
+        
+    </style>
+</head>
+    
+<body>
+<ui-helper></ui-helper>
+<SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
+<SharePoint:ImageLink runat="server" />
+<SharePoint:SharePointForm onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}" runat="server">
+<script type="text/javascript">g_wsaEnabled = false; var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; </script>
+<WebPartPages:SPWebPartManager runat="server" />        
+<asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+        
+<!-- Start Ribbon -->
+<PublishingRibbon:PublishingRibbon runat="server" />
+<!-- End Ribbon -->
+            
+<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly"><wssuc:Welcome runat="server" EnableViewState="false" /></SharePoint:SPSecurityTrimmedControl>
+
+<div id="s4-workspace" ng-app="">
+<div id="s4-bodyContainer">
+<div id="page-content" class="main-content- container-fluid" ng-controller="uiHelper" data-ng-init="init()">
+
+<!-- Start Top Navigation -->
+    <section class="section sub-nav-container" ng-cloak>                
+    </section>
+<!-- End Top Navigation -->
+
+<!-- Start Main Content -->
+<div class="main-container">
+    <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server" />
+</div>
+<!-- End Main Content -->
+
+<!-- Start Footer Content -->
+<div class="footer-container">
+</div>
+
+<!-- End Footer Content -->
+</div> <!--page-content-->
+</div> <!--s4-bodyContainer-->
+</div> <!--/s4-workspace-->
+
+<SharePoint:ScriptLink language="javascript" name="sp.js" OnDemand="true" runat="server" Localizable="true" />
+<SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false" />
+<SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false" />
+<SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false" />
+<SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sp-pnp-js/2.0.6/pnp.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<!-- scripts -->
+<script type="text/javascript" src="<asp:Literal runat="server" Text="<%$SPUrl: ~sitecollection/_catalogs/masterpage//js/main.min.js%>" />"></script>
+
+<!-- Form Digest -->
+<asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server"><SharePoint:formdigest runat="server" /></asp:ContentPlaceHolder>
+        
+<!-- Hide Various Placeholders -->  
+    
+<asp:ContentPlaceHolder id="PlaceHolderSearchArea" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" Visible="False" runat="server" />
+
+<asp:ContentPlaceHolder id="PlaceHolderSiteName" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderPageImage" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderMiniConsole" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderNavSpacer" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="WSSDesignConsole" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" Visible="False" runat="server" />
+<asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" Visible="False" runat="server" />
+
+<PublishingWebControls:EditModePanel runat="server" id="SetEditModeClass">
+    <script language="text/javascript">
+        $("body").addClass("edit-mode"); 
+    </script>
+</PublishingWebControls:EditModePanel>
+</SharePoint:SharePointForm>
+<asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
+</body>
+</SharePoint:SPHtmlTag>
