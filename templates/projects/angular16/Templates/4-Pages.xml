@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.6.1608.0, Culture=neutral, PublicKeyToken=3751622786b357c2" Author="Khader Abdul" Version="1.0">
+    <pnp:Parameters>
+      <pnp:Parameter Key="SampleKey">Sample Value</pnp:Parameter>
+    </pnp:Parameters>
+  </pnp:Preferences>
+  <pnp:Templates ID="ProvisioningTemplates">
+    <pnp:ProvisioningTemplate ID="SiteCollectionBaseTemplate"
+      DisplayName="Site Collection Base Template"
+      Description=""
+      BaseSiteTemplate="BLANKINTERNET#0">
+      <pnp:SupportedUILanguages>
+        <pnp:SupportedUILanguage LCID="1033" />
+      </pnp:SupportedUILanguages>
+      <pnp:Publishing AutoCheckRequirements="MakeCompliant">
+        <pnp:PageLayouts />
+      </pnp:Publishing>
+      <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Sections/Pages.xml"/>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
