@@ -515,7 +515,7 @@ var AspnetGenerator = yeoman.generators.Base.extend({
    */
   end: function() {
     if(!this.options['skip-install'] && (this.type === 'angular16' || this.type === 'mvc' || this.type === 'mvcbasic' || this.type === "fsharp_mvcbasic")) {
-      process.chdir(this.applicationName);
+      process.chdir(this.deploymentProjectPath);
       this.installDependencies({
         npm: false,
         callback: this._showUsageHints.bind(this)
