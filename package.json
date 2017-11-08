@@ -14,7 +14,7 @@
     ]
   ],
   "_from": "generator-rp@latest",
-  "_id": "generator-rp@0.0.1",
+  "_id": "generator-rp@0.0.2",
   "_inCache": true,
   "_location": "/generator-rp",
   "_nodeVersion": "4.8.1",
@@ -97,5 +97,5 @@
   "scripts": {
     "test": "mocha"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
