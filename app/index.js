@@ -59,6 +59,12 @@ var AspnetGenerator = yeoman.generators.Base.extend({
         ]
       },
       {
+        type    : 'input',
+        name    : 'baseLocation',
+        message : 'Where do you want to put the new solution?',
+        default : 'C:\\Projects' // Default to current folder name
+      },
+      {
           type: 'list',
           name: 'ui',
           message: 'Which Style framework would you like to use?',
@@ -69,7 +75,7 @@ var AspnetGenerator = yeoman.generators.Base.extend({
               value: 'sass'
             },
             {
-              name: 'LESS',
+              name: 'LESS (not available)',
               value: 'less'
             }
           ],
@@ -82,7 +88,9 @@ var AspnetGenerator = yeoman.generators.Base.extend({
       this.prompt(prompts, function (props) {
         this.type = props.type;
         this.ui = props.ui;
+        this.baseLocation = props.baseLocation;
         done();
+        this.log()
       }.bind(this));
     }
   },
@@ -127,8 +135,11 @@ var AspnetGenerator = yeoman.generators.Base.extend({
       }];
       this.prompt(prompts, function (props) {        
         this.applicationName = props.applicationName;
-        this.projectName = this.applicationName + '.Deployment'
-        this.projectPath = this.applicationName + '/' + this.projectName;
+        this.deploymentProjectName = this.applicationName + '.Deployment'
+        this.solutionPath = this.baseLocation + '/' + this.applicationName;
+        this.deploymentPath = this.solutionPath + '/Deployment';
+        this.codePath = this.solutionPath + '/Code';
+        this.deploymentProjectPath = this.deploymentPath + '/' + this.deploymentProjectName;
         this.clientCode = props.clientCode;
         this._buildTemplateData();
         done();
@@ -145,118 +156,121 @@ var AspnetGenerator = yeoman.generators.Base.extend({
       case 'angular16':
         this.sourceRoot(path.join(__dirname, '../templates/projects/' + this.type));
         
-        
-        // directories
-        mkdirp.sync(this.projectPath + '/Jobs');
-        mkdirp.sync(this.projectPath + '/Resources');
-        mkdirp.sync(this.projectPath + '/Properties');
-        mkdirp.sync(this.projectPath + '/Templates');
+        this.copy(this.sourceRoot() + '/../../gitignore.txt', this.solutionPath + '/.gitignore');
+        this.fs.copyTpl(this.sourceRoot() + '/../../Solution.sln', this.deploymentPath + '/' + this.applicationName + '.sln', this.templatedata);
 
-        mkdirp.sync(this.projectPath + '/Resources/css');
-        mkdirp.sync(this.projectPath + '/Resources/DisplayTemplates');
-        mkdirp.sync(this.projectPath + '/Resources/images');
-        mkdirp.sync(this.projectPath + '/Resources/js');
-        mkdirp.sync(this.projectPath + '/Resources/js/dist');
-        mkdirp.sync(this.projectPath + '/Resources/js/includes');
-        mkdirp.sync(this.projectPath + '/Resources/js/lib');
-        mkdirp.sync(this.projectPath + '/Resources/js/src');
-        mkdirp.sync(this.projectPath + '/Resources/js/src/components');
-        mkdirp.sync(this.projectPath + '/Resources/js/src/main');
-        mkdirp.sync(this.projectPath + '/Resources/js/src/services');
-        mkdirp.sync(this.projectPath + '/Resources/js/src/singular');
-        mkdirp.sync(this.projectPath + '/Resources/MasterPages');
-        mkdirp.sync(this.projectPath + '/Resources/PageLayouts');
-        mkdirp.sync(this.projectPath + '/Resources/Pages');
-        mkdirp.sync(this.projectPath + '/Resources/WebParts');
+        // directories
+        mkdirp.sync(this.solutionPath + '/Code');
+        mkdirp.sync(this.solutionPath + '/Deployment');
+
+        mkdirp.sync(this.deploymentProjectPath + '/Jobs');
+        mkdirp.sync(this.deploymentProjectPath + '/Properties');
+        mkdirp.sync(this.deploymentProjectPath + '/Templates');
+
+        mkdirp.sync(this.codePath + '/css');
+        mkdirp.sync(this.codePath + '/DisplayTemplates');
+        mkdirp.sync(this.codePath + '/images');
+        mkdirp.sync(this.codePath + '/js');
+        mkdirp.sync(this.codePath + '/js/dist');
+        mkdirp.sync(this.codePath + '/js/includes');
+        mkdirp.sync(this.codePath + '/js/lib');
+        mkdirp.sync(this.codePath + '/js/src');
+        mkdirp.sync(this.codePath + '/js/src/components');
+        mkdirp.sync(this.codePath + '/js/src/main');
+        mkdirp.sync(this.codePath + '/js/src/services');
+        mkdirp.sync(this.codePath + '/js/src/singular');
+        mkdirp.sync(this.codePath + '/MasterPages');
+        mkdirp.sync(this.codePath + '/PageLayouts');
+        mkdirp.sync(this.codePath + '/Pages');
+        mkdirp.sync(this.codePath + '/WebParts');
         
         mkdirp.sync(this.projectPath + '/Templates/Sections');
 
-        this.copy(this.sourceRoot() + '/../../gitignore.txt', this.applicationName + '/.gitignore');
-        this.fs.copyTpl(this.sourceRoot() + '/../../Solution.sln', this.applicationName + '/' + this.applicationName + '.sln', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Company.ConsoleApplication1.csproj', this.projectPath + '/' + this.projectName + '.csproj', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Program.cs', this.projectPath + '/Program.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/App.config', this.projectPath + '/App.config', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/gulpfile.js', this.projectPath + '/gulpfile.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/package.json', this.projectPath + '/package.json', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/packages.config', this.projectPath + '/packages.config', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/ProvisioningHelper.cs', this.projectPath + '/ProvisioningHelper.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/AssemblyInfo.cs', this.projectPath + '/Properties/AssemblyInfo.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Settings.Designer.cs', this.projectPath + '/StringExtensions.cs', this.templatedata);
+        
+        this.fs.copyTpl(this.sourceRoot() + '/Company.ConsoleApplication1.csproj', this.deploymentProjectPath + '/' + this.deploymentProjectName + '.csproj', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Program.cs', this.deploymentProjectPath + '/Program.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/App.config', this.deploymentProjectPath + '/App.config', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/gulpfile.js', this.deploymentProjectPath + '/gulpfile.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/package.json', this.deploymentProjectPath + '/package.json', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/packages.config', this.deploymentProjectPath + '/packages.config', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/ProvisioningHelper.cs', this.deploymentProjectPath + '/ProvisioningHelper.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/AssemblyInfo.cs', this.projectdeploymentProjectPathPath + '/Properties/AssemblyInfo.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Settings.Designer.cs', this.deploymentProjectPath + '/StringExtensions.cs', this.templatedata);
 
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/0-GetProvisioningXml.cs', this.projectPath + '/Jobs/0-GetProvisioningXml.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/1-RunProvisioningXml.cs', this.projectPath + '/Jobs/1-RunProvisioningXml.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/3-ImportDataFile.cs', this.projectPath + '/Jobs/3-ImportDataFile.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/4-CreateSitesAndSubsites.cs', this.projectPath + '/Jobs/4-CreateSitesAndSubsites.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/2-ProvisionGroupSites.cs', this.projectPath + '/Jobs/2-ProvisionGroupSites.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Jobs/JobBase.cs', this.projectPath + '/Jobs/JobBase.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/0-GetProvisioningXml.cs', this.deploymentProjectPath + '/Jobs/0-GetProvisioningXml.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/1-RunProvisioningXml.cs', this.deploymentProjectPath + '/Jobs/1-RunProvisioningXml.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/3-ImportDataFile.cs', this.deploymentProjectPath + '/Jobs/3-ImportDataFile.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/4-CreateSitesAndSubsites.cs', this.deploymentProjectPath + '/Jobs/4-CreateSitesAndSubsites.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/2-ProvisionGroupSites.cs', this.deploymentProjectPath + '/Jobs/2-ProvisionGroupSites.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Jobs/JobBase.cs', this.deploymentProjectPath + '/Jobs/JobBase.cs', this.templatedata);
 
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/common.js', this.projectPath + '/Resources/js/src/main/common.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/config.js', this.projectPath + '/Resources/js/src/main/config.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/main.js', this.projectPath + '/Resources/js/src/main/main.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/modal.js', this.projectPath + '/Resources/js/src/main/modal.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/ui-helper.js', this.projectPath + '/Resources/js/src/main/ui-helper.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/modal-service.js', this.projectPath + '/Resources/js/src/services/modal-service.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/storage-service.js', this.projectPath + '/Resources/js/src/services/storage-service.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/taxonomy-service.js', this.projectPath + '/Resources/js/src/services/taxonomy-service.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/user-profile-service.js', this.projectPath + '/Resources/js/src/services/user-profile-service.js', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Resources/yammer-api-service.js', this.projectPath + '/Resources/js/src/services/yammer-api-service.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/common.js', this.codePath + '/js/src/main/common.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/config.js', this.codePath + '/js/src/main/config.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/main.js', this.codePath + '/js/src/main/main.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/modal.js', this.codePath + '/js/src/main/modal.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/ui-helper.js', this.codePath + '/js/src/main/ui-helper.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/modal-service.js', this.codePath + '/js/src/services/modal-service.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/storage-service.js', this.codePath + '/js/src/services/storage-service.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/taxonomy-service.js', this.codePath + '/js/src/services/taxonomy-service.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/user-profile-service.js', this.codePath + '/js/src/services/user-profile-service.js', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/yammer-api-service.js', this.codePath + '/js/src/services/yammer-api-service.js', this.templatedata);
 
-        this.copy(this.sourceRoot() + '/Resources/main.master', this.projectPath + '/Resources/MasterPages/main.master');
-        this.copy(this.sourceRoot() + '/Resources/modal.scss', this.projectPath + '/Resources/css/sass/modal.scss');
-        this.copy(this.sourceRoot() + '/Resources/index.aspx', this.projectPath + '/Resources/Pages/index.aspx');
+        this.copy(this.sourceRoot() + '/Resources/main.master', this.codePath + '/MasterPages/main.master');
+        this.copy(this.sourceRoot() + '/Resources/modal.scss', this.codePath + '/css/sass/modal.scss');
+        this.copy(this.sourceRoot() + '/Resources/index.aspx', this.codePath + '/Pages/index.aspx');
 
-        this.copy(this.sourceRoot() + '/Templates/1-TermSet.xml', this.projectPath + '/Templates/1-TermSet.xml');
-        this.copy(this.sourceRoot() + '/Templates/2-InformationArchitecture.xml', this.projectPath + '/Templates/2-InformationArchitecture.xml');
-        this.copy(this.sourceRoot() + '/Templates/3-Files.xml', this.projectPath + '/Templates/3-Files.xml');
-        this.copy(this.sourceRoot() + '/Templates/4-Pages.xml', this.projectPath + '/Templates/4-Pages.xml');
-        this.copy(this.sourceRoot() + '/Templates/5-SecurityGroups.xml', this.projectPath + '/Templates/5-SecurityGroups.xml');
-        this.copy(this.sourceRoot() + '/Templates/6-Search.xml', this.projectPath + '/Templates/6-Search.xml');
+        this.copy(this.sourceRoot() + '/Templates/1-TermSet.xml', this.deploymentProjectPath + '/Templates/1-TermSet.xml');
+        this.copy(this.sourceRoot() + '/Templates/2-InformationArchitecture.xml', this.deploymentProjectPath + '/Templates/2-InformationArchitecture.xml');
+        this.copy(this.sourceRoot() + '/Templates/3-Files.xml', this.deploymentProjectPath + '/Templates/3-Files.xml');
+        this.copy(this.sourceRoot() + '/Templates/4-Pages.xml', this.deploymentProjectPath + '/Templates/4-Pages.xml');
+        this.copy(this.sourceRoot() + '/Templates/5-SecurityGroups.xml', this.deploymentProjectPath + '/Templates/5-SecurityGroups.xml');
+        this.copy(this.sourceRoot() + '/Templates/6-Search.xml', this.deploymentProjectPath + '/Templates/6-Search.xml');
 
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/ContentTypes.xml', this.projectPath + '/Templates/Sections/ContentTypes.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Files.xml', this.projectPath + '/Templates/Sections/Files.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/FilesSearch.xml', this.projectPath + '/Templates/Sections/FilesSearch.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Lists.xml', this.projectPath + '/Templates/Sections/Lists.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Pages.xml', this.projectPath + '/Templates/Sections/Pages.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Security.xml', this.projectPath + '/Templates/Sections/Security.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/SiteFields.xml', this.projectPath + '/Templates/Sections/SiteFields.xml', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/TermSets.xml', this.projectPath + '/Templates/Sections/TermSets.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/ContentTypes.xml', this.deploymentProjectPath + '/Templates/Sections/ContentTypes.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Files.xml', this.deploymentProjectPath + '/Templates/Sections/Files.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/FilesSearch.xml', this.deploymentProjectPath + '/Templates/Sections/FilesSearch.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Lists.xml', this.deploymentProjectPath + '/Templates/Sections/Lists.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Pages.xml', this.deploymentProjectPath + '/Templates/Sections/Pages.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/Security.xml', this.deploymentProjectPath + '/Templates/Sections/Security.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/SiteFields.xml', this.deploymentProjectPath + '/Templates/Sections/SiteFields.xml', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/Templates/Sections/TermSets.xml', this.deploymentProjectPath + '/Templates/Sections/TermSets.xml', this.templatedata);
 
-        this.copy(this.sourceRoot() + '/Resources/lib/angular.min.js', this.projectPath + '/Resources/js/lib/angular.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/angular.min.js.map', this.projectPath + '/Resources/js/lib/angular.min.js.map');
-        this.copy(this.sourceRoot() + '/Resources/lib/bootstrap.min.css', this.projectPath + '/Resources/js/lib/bootstrap.min.css');
-        this.copy(this.sourceRoot() + '/Resources/lib/bootstrap.min.js', this.projectPath + '/Resources/js/lib/bootstrap.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/es6-promise.min.js', this.projectPath + '/Resources/js/lib/es6-promise.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/fetch.min.js', this.projectPath + '/Resources/js/lib/fetch.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/modernizr.min.js', this.projectPath + '/Resources/js/lib/modernizr.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/pnp.min.js', this.projectPath + '/Resources/js/lib/pnp.min.js');
-        this.copy(this.sourceRoot() + '/Resources/lib/pnp.min.js.map', this.projectPath + '/Resources/js/lib/pnp.min.js.map');
+        this.copy(this.sourceRoot() + '/Resources/lib/angular.min.js', this.codePath + '/js/lib/angular.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/angular.min.js.map', this.codePath + '/js/lib/angular.min.js.map');
+        this.copy(this.sourceRoot() + '/Resources/lib/bootstrap.min.css', this.codePath + '/js/lib/bootstrap.min.css');
+        this.copy(this.sourceRoot() + '/Resources/lib/bootstrap.min.js', this.codePath + '/js/lib/bootstrap.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/es6-promise.min.js', this.codePath + '/js/lib/es6-promise.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/fetch.min.js', this.codePath + '/js/lib/fetch.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/modernizr.min.js', this.codePath + '/js/lib/modernizr.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/pnp.min.js', this.codePath + '/js/lib/pnp.min.js');
+        this.copy(this.sourceRoot() + '/Resources/lib/pnp.min.js.map', this.codePath + '/js/lib/pnp.min.js.map');
         
 
         if(this.ui == "less") {
-          mkdirp.sync(this.projectPath + '/Resources/css/less');
+          mkdirp.sync(this.codePath + '/css/less');
         } else {
-          mkdirp.sync(this.projectPath + '/Resources/css/sass');
+          mkdirp.sync(this.codePath + '/css/sass');
         }
         break;
       case 'web':
         this.sourceRoot(path.join(__dirname, '../templates/projects/' + this.type));
 
-        this.copy(this.sourceRoot() + '/../../gitignore.txt', this.applicationName + '/.gitignore');
+        this.copy(this.sourceRoot() + '/../../gitignore.txt', this.deploymentProjectPath + '/.gitignore');
 
-        this.template(this.sourceRoot() + '/Program.cs', this.applicationName + '/Program.cs', this.templatedata);
+        this.template(this.sourceRoot() + '/Program.cs', this.deploymentProjectPath + '/Program.cs', this.templatedata);
 
-        this.template(this.sourceRoot() + '/Startup.cs', this.applicationName + '/Startup.cs', this.templatedata);
+        this.template(this.sourceRoot() + '/Startup.cs', this.deploymentProjectPath + '/Startup.cs', this.templatedata);
 
-        this.template(this.sourceRoot() + '/Company.WebApplication1.csproj', this.applicationName + '/' + this.applicationName + '.csproj', this.templatedata);
+        this.template(this.sourceRoot() + '/Company.WebApplication1.csproj', this.deploymentProjectPath + '/' + this.applicationName + '.csproj', this.templatedata);
 
-        this.copy(this.sourceRoot() + '/web.config', this.applicationName + '/web.config');
+        this.copy(this.sourceRoot() + '/web.config', this.deploymentProjectPath + '/web.config');
 
         /// Properties
-        this.fs.copyTpl(this.templatePath('Properties/**/*'), this.applicationName + '/Properties', this.templatedata);
-        this.copy(this.sourceRoot() + '/runtimeconfig.template.json', this.applicationName + '/runtimeconfig.template.json');
-        this.fs.copy(this.sourceRoot() + '/README.md', this.applicationName + '/README.md');
+        this.fs.copyTpl(this.templatePath('Properties/**/*'), this.deploymentProjectPath + '/Properties', this.templatedata);
+        this.copy(this.sourceRoot() + '/runtimeconfig.template.json', this.deploymentProjectPath + '/runtimeconfig.template.json');
+        this.fs.copy(this.sourceRoot() + '/README.md', this.solutionPath + '/README.md');
         mkdirp.sync(this.applicationName + '/wwwroot');
-        this.template(this.sourceRoot() + '/../../global.json', this.applicationName + '/global.json', this.templatedata);
+        this.template(this.sourceRoot() + '/../../global.json', this.deploymentProjectPath + '/global.json', this.templatedata);
         break;
 
       case 'webapi':
