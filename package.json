@@ -93,9 +93,9 @@
   ],
   "name": "generator-rp",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",  
+  "readme": "ERROR: No README data found!",
   "scripts": {
     "test": "mocha"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
