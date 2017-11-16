@@ -2,7 +2,7 @@
   <!-- ********      -->
   <!-- LIST TYPES    -->
   <!-- ********      -->
-  <pnp:ContentType ID="" Name="" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+  <pnp:ContentType ID="" Name="" Description="" Group="1 - <%= applicationName %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
     <pnp:FieldRefs>      
       <pnp:FieldRef ID="" Name="" />
     </pnp:FieldRefs>
@@ -11,7 +11,7 @@
   <!-- ********      -->
   <!-- DOC TYPES    -->
   <!-- ********      -->
-  <pnp:ContentType ID="" Name="Base Document" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+  <pnp:ContentType ID="" Name="Base Document" Description="" Group="1 - <%= applicationName %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
     <pnp:FieldRefs>      
       <pnp:FieldRef ID="" Name="" />
     </pnp:FieldRefs>
@@ -20,7 +20,7 @@
   <!-- ********      -->
   <!-- PAGE TYPES    -->
   <!-- ********      -->
-  <pnp:ContentType ID="" Name="Base Page" Description="" Group="1 - <%= applicationname %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+  <pnp:ContentType ID="" Name="Base Page" Description="" Group="1 - <%= applicationName %>" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
     <pnp:FieldRefs>
       <pnp:FieldRef ID="" Name="" />
     </pnp:FieldRefs>

@@ -1,5 +1,5 @@
 ﻿'use strict';
-var myApp = angular.module('<%= applicationname %>'),
+var myApp = angular.module('<%= applicationName %>'),
     controllerName = 'uiHelper';
 
 myApp.controller(controllerName, ['$scope', 'storage', 'CONFIG', function ($scope, storage, COM_CONFIG) {

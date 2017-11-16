@@ -4,7 +4,7 @@
     globalCacheDisable: false
 });
 // set up static configuration entries
-var myApp = angular.module('<%= applicationname %>');
+var myApp = angular.module('<%= applicationName %>');
 if (document.location.host === '') {
     if (document.location.pathname.toLowerCase().indexOf('') !== -1) {
         myApp.constant('CONFIG', {

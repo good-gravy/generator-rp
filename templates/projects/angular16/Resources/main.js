@@ -1,4 +1,4 @@
-var app = angular.module('<%= applicationname %>', []).config(function ($sceDelegateProvider) {
+var app = angular.module('<%= applicationName %>', []).config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
         // Allow same origin resource loads.
         'self',

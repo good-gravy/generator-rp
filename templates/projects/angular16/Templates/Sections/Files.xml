@@ -1,9 +1,9 @@
 ﻿<pnp:Files xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
 
   <!--Masterpage -->
-<pnp:File Src=".\MasterPages\main.master" Folder="{masterpagecatalog}/<%= applicationname %>/MasterPages" Overwrite="true" Level="Published">
+<pnp:File Src=".\MasterPages\main.master" Folder="{masterpagecatalog}/<%= applicationName %>/MasterPages" Overwrite="true" Level="Published">
   <pnp:Properties>
-    <pnp:Property Key="Title" Value="1 - <%= applicationname %> Master" />
+    <pnp:Property Key="Title" Value="1 - <%= applicationName %> Master" />
     <pnp:Property Key="ContentTypeId" Value="{contenttypeid:ASP NET Master Page}" />
     <pnp:Property Key="PublishingAssociatedContentType" Value=";#ASP NET Master Page;#0x0101000F1C8B9E0EB4BE489F09807B2C53288F0054AD6EF48B9F7B45A142F8173F171BD1;#"/>
   </pnp:Properties>
@@ -12,10 +12,10 @@
   <!-- Page Layouts-->
 
   <!-- CSS -->
-<pnp:File Src="css\main.min.css" Folder="{masterpagecatalog}/<%= applicationname %>/css" Overwrite="true" Level="Published" />  
+<pnp:File Src="css\main.min.css" Folder="{masterpagecatalog}/<%= applicationName %>/css" Overwrite="true" Level="Published" />  
 
 <!-- JS-->
-<pnp:File Src="js\dist\main.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/" Overwrite="true" Level="Published" />
+<pnp:File Src="js\dist\main.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/" Overwrite="true" Level="Published" />
 
 <!-- Image Renditions -->
 <pnp:File Src=".\MasterPages\PublishingImageRenditions.xml" Folder="{masterpagecatalog}" Overwrite="true" Level="Published">
@@ -26,15 +26,15 @@
 </pnp:File>
 
   <!-- LIB JS-->
-  <pnp:File Src="js\lib\angular.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\angular.min.js.map" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\bootstrap.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\bootstrap.min.css" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\es6-promise.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\fetch.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\modernizr.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\pnp.min.js" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
-  <pnp:File Src="js\lib\pnp.min.js.map" Folder="{masterpagecatalog}/<%= applicationname %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\angular.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\angular.min.js.map" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\bootstrap.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\bootstrap.min.css" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\es6-promise.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\fetch.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\modernizr.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\pnp.min.js" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
+  <pnp:File Src="js\lib\pnp.min.js.map" Folder="{masterpagecatalog}/<%= applicationName %>/js/lib" Overwrite="true" Level="Published" />
  
   <!-- Images -->
 

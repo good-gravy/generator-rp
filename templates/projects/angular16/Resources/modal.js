@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('<%= applicationname %>')
+        .module('<%= applicationName %>')
         .directive('modal', Directive);
 
     function Directive(modalService) {

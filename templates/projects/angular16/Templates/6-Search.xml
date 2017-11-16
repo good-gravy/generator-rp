@@ -18,9 +18,9 @@
       </pnp:Publishing>
       <pnp:WebSettings
         WelcomePage="Pages/default.aspx"
-        SiteLogo="{sitecollection}/_catalogs/masterpage/<%= applicationname %>/images/compassion-white-logo.png"
+        SiteLogo="{sitecollection}/_catalogs/masterpage/<%= applicationName %>/images/compassion-white-logo.png"
         MasterPageUrl="{sitecollection}/_catalogs/MasterPage/oslo.master"
-        CustomMasterPageUrl="{sitecollection}/_catalogs/MasterPage/<%= applicationname %>/MasterPages/com-main.master"
+        CustomMasterPageUrl="{sitecollection}/_catalogs/MasterPage/<%= applicationName %>/MasterPages/com-main.master"
         />
     </pnp:ProvisioningTemplate>
   </pnp:Templates>

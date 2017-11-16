@@ -7,8 +7,8 @@
     <ProjectGuid>{2578601E-58E6-47B2-ABB1-55663EAD12E0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace><%= applicationname %></RootNamespace>
-    <AssemblyName><%= applicationname %></AssemblyName>
+    <RootNamespace><%= applicationName %></RootNamespace>
+    <AssemblyName><%= applicationName %></AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

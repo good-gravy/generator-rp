@@ -1,5 +1,5 @@
 ﻿'use strict';
-var myApp = angular.module('<%= applicationname %>');
+var myApp = angular.module('<%= applicationName %>');
 
 myApp.factory('common', ['CONFIG', function (CONFIG) {
     return {
