@@ -98,6 +98,7 @@ var AspnetGenerator = yeoman.generators.Base.extend({
   _buildTemplateData: function() {
     this.templatedata.namespace = projectName(this.applicationName);
     this.templatedata.applicationName = this.applicationName;
+    this.templatedata.deploymentProjectName = this.deploymentProjectName;
     this.templatedata.projectName = this.applicationName;
     this.templatedata.clientCode = this.clientCode;
     this.templatedata.includeApplicationInsights = false;
