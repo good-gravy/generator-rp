@@ -195,7 +195,7 @@ var AspnetGenerator = yeoman.generators.Base.extend({
         this.fs.copyTpl(this.sourceRoot() + '/package.json', this.deploymentProjectPath + '/package.json', this.templatedata);
         this.fs.copyTpl(this.sourceRoot() + '/packages.config', this.deploymentProjectPath + '/packages.config', this.templatedata);
         this.fs.copyTpl(this.sourceRoot() + '/ProvisioningHelper.cs', this.deploymentProjectPath + '/ProvisioningHelper.cs', this.templatedata);
-        this.fs.copyTpl(this.sourceRoot() + '/AssemblyInfo.cs', this.projectdeploymentProjectPathPath + '/Properties/AssemblyInfo.cs', this.templatedata);
+        this.fs.copyTpl(this.sourceRoot() + '/AssemblyInfo.cs', this.deploymentProjectPath + '/Properties/AssemblyInfo.cs', this.templatedata);
         this.fs.copyTpl(this.sourceRoot() + '/Settings.Designer.cs', this.deploymentProjectPath + '/StringExtensions.cs', this.templatedata);
 
         this.fs.copyTpl(this.sourceRoot() + '/Jobs/0-GetProvisioningXml.cs', this.deploymentProjectPath + '/Jobs/0-GetProvisioningXml.cs', this.templatedata);
