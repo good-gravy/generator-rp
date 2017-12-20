@@ -61,7 +61,7 @@
             
 <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly"><wssuc:Welcome runat="server" EnableViewState="false" /></SharePoint:SPSecurityTrimmedControl>
 
-<div id="s4-workspace" ng-app="">
+<div id="s4-workspace" ng-app="<%= applicationName %>">
 <div id="s4-bodyContainer">
 <div id="page-content" class="main-content- container-fluid" ng-controller="uiHelper" data-ng-init="init()">
 
