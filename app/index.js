@@ -216,7 +216,7 @@ var AspnetGenerator = yeoman.generators.Base.extend({
         this.fs.copyTpl(this.sourceRoot() + '/Resources/user-profile-service.js', this.codePath + '/js/src/services/user-profile-service.js', this.templatedata);
         this.fs.copyTpl(this.sourceRoot() + '/Resources/yammer-api-service.js', this.codePath + '/js/src/services/yammer-api-service.js', this.templatedata);
 
-        this.copy(this.sourceRoot() + '/Resources/main.master', this.codePath + '/MasterPages/main.master');
+        this.fs.copyTpl(this.sourceRoot() + '/Resources/main.master', this.codePath + '/MasterPages/main.master', this.templatedata);
         this.copy(this.sourceRoot() + '/Resources/modal.scss', this.codePath + '/css/sass/modal.scss');
         this.copy(this.sourceRoot() + '/Resources/index.aspx', this.codePath + '/Pages/index.aspx');
 
